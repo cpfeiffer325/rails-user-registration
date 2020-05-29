@@ -8,9 +8,8 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(user_params)
-
-    @user.save
+    create_user_service = CreateUser.new(user_params)
+    @user = create_user_service.create_user
     redirect_to @user
   end
 
