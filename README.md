@@ -15,19 +15,19 @@ Assignment to build a user registration app that also sends notifications on reg
 - Remind the user to confirm their email if they haven’t done so after 24 hours
 
 ## GETTING STARTED
-1. clone repo
+1. ```git clone git@github.com:cpfeiffer325/rails-user-registration.git```
 2. ```bundle install```
-3. run migration
-4. rails s
-5. go to http://localhost:3000/
+3. Run database migration ```rake db:migrate```
+4. ```rails s```
+5. Go to http://localhost:3000/
 
 ## RUNNING UNIT TESTS
 
 
 ## VERSIONS AND DEPENDENCIES
-* Ruby 2.7.1 [Ruby Guide](https://ruby-doc.org/core-2.7.1/)
-* Rails 6.0.3.1 [Rails Guide](http://guides.rubyonrails.org/v6.0.3.1/)
-* SQLITE3 1.4.2 [SQLITE3 Guide](https://www.rubydoc.info/gems/sqlite3/1.4.2)
+* Ruby 2.7.1 - [Ruby Guide](https://ruby-doc.org/core-2.7.1/)
+* Rails 6.0.3.1 - [Rails Guide](http://guides.rubyonrails.org/v6.0.3.1/)
+* SQLITE3 1.4.2 - [SQLITE3 Guide](https://www.rubydoc.info/gems/sqlite3/1.4.2)
 
 ## SCREENSHOTS
 ### Registration PAGE
