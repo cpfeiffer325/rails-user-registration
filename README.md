@@ -1,24 +1,36 @@
-# README
+# RAILS USER REGISTRATION PROJECT
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## DESCRIPTION
+Assignment to build a user registration app that also sends notifications on registration
 
-Things you may want to cover:
+## CRITERIA
+- Have a User Registration form requiring email and password
+- When a User registers themselves, perform two side effects:
+  - Send them an email confirmation message
+  - Store their Gravatar URL
+- If a User is created outside of the self-registration workflow
+  - Auto-confirm them
+  - Only store their Gravatar URL
+- Once a user is confirmed (manually or automatically), allow them to access their user page, where they can see their gravatar image.
+- Remind the user to confirm their email if they haven’t done so after 24 hours
 
-* Ruby version
+## GETTING STARTED
+1. clone repo
+2. ```bundle install```
+3. run migration
+4. rails s
+5. go to http://localhost:3000/
 
-* System dependencies
+## RUNNING UNIT TESTS
 
-* Configuration
 
-* Database creation
+## VERSIONS AND DEPENDENCIES
+* Ruby 2.7.1 [Ruby Guide](https://ruby-doc.org/core-2.7.1/)
+* Rails 6.0.3.1 [Rails Guide](http://guides.rubyonrails.org/v6.0.3.1/)
+* SQLITE3 1.4.2 [SQLITE3 Guide](https://www.rubydoc.info/gems/sqlite3/1.4.2)
 
-* Database initialization
+## SCREENSHOTS
+### Registration PAGE
 
-* How to run the test suite
+### USERS PAGE
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
