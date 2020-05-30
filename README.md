@@ -4,7 +4,7 @@
 Assignment to build a user registration app that also sends notifications on registration
 
 ## CRITERIA
-- Have a User Registration form requiring email and password
+- Have a User Registration form requiring email and password DONE
 - When a User registers themselves, perform two side effects:
   - Send them an email confirmation message
   - Store their Gravatar URL
@@ -13,6 +13,7 @@ Assignment to build a user registration app that also sends notifications on reg
   - Only store their Gravatar URL
 - Once a user is confirmed (manually or automatically), allow them to access their user page, where they can see their gravatar image.
 - Remind the user to confirm their email if they haven’t done so after 24 hours
+- Complete without using any authentication gems and without using Rails model callbacks
 
 ## GETTING STARTED
 1. ```git clone git@github.com:cpfeiffer325/rails-user-registration.git```
