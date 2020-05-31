@@ -14,8 +14,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      @user.set_confirmation_token
+      @user.save(validate: false)
       UserMailer.registration_confirmation(@user).deliver
-      flash[:success] = "Please check your email to confirm your addres to continue"
+      flash[:success] = "Please check your email to confirm your address to continue"
       redirect_to @user
     else
       flash[:error] = "Aaaaah, something is missing. Sending you back to register properly"

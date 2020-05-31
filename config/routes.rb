@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :new, :create, :show] do
     member do
-      get :confirm_email
+      get '/:token/confirm_email/', :to => "users#confirm_email", as: 'confirm_email'
     end
   end
 end
