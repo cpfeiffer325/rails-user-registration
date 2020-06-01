@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   # before_save :create_gravatar_url
   before_create :set_confirmation_token
+
+  # make gravatar available to Users
+  include Gravtastic
+  gravtastic :secure => false, :default => 'identicon', :filetype => :gif, :size => 120
   
   private
   
