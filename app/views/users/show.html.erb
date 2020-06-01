@@ -7,5 +7,5 @@
 
 <p>
   <strong>Gravatar Image:</strong>
-  <%= "TODO: Add image here" %>
+  <%= image_tag @user.gravatar_url(:rating => 'R', :secure => true) %>
 </p>
