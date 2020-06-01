@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'pry', '~> 0.12.2'
 
+gem 'gravtastic'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
