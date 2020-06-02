@@ -8,17 +8,20 @@ class UsersController < ApplicationController
   end
 
   def create
-    create_user_service = CreateUser.new(user_params)
+    create_user_service = CreateUser.new(user_params.merge(email_confirmed: false))
     @user = create_user_service.create_user
+
+    session[:user_id] = @user.id
 
     # @user = User.new(user_params)
 
+    # Split into 2 one to auto validate or send email if user created account
     if @user
       # @user.set_confirmation_token
       # @user.save(validate: false)
       # UserMailer.registration_confirmation(@user).deliver
       flash[:success] = "Please check your email to confirm your address to continue"
-      redirect_to @user
+      redirect_to '/welcome'
     else
       flash[:error] = "Aaaaah, something is missing. Sending you back to register properly"
       redirect_to 'new'
