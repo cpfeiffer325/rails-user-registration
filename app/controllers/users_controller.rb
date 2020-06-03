@@ -18,11 +18,24 @@ class UsersController < ApplicationController
 
     if @user
       UserMailer.registration_confirmation(@user).deliver
+      UsersReminderJob.set(wait: 24.hours).perform_later(@user)
       flash[:success] = "Please check your email to confirm your address to continue"
       redirect_to '/welcome'
     else
       flash[:error] = "Aaaaah, something is missing. Sending you back to register properly"
       redirect_to 'new'
+    end
+  end
+
+  def confirm_email
+    @user = User.find_by_confirm_token(params[:id])
+    if user_params
+      @user.email_activate
+      flash[:success] = 'Welcome to the User Registration App'
+      redirect_to @user
+    else
+      flash[:error] = 'Error: User does not exist'
+      redirect_to '/welcome'
     end
   end
 
