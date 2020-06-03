@@ -11,9 +11,9 @@ Assignment to build a user registration app that also sends notifications on reg
 - If a User is created outside of the self-registration workflow
   - Auto-confirm them DONE
   - Only store their Gravatar URL DONE
-- Once a user is confirmed (manually or automatically), allow them to access their user page, where they can see their gravatar image. HALF DONE (NOT DEPENDENT ON EMAIL VERIFICATION YET)
+- Once a user is confirmed (manually or automatically), allow them to access their user page, where they can see their gravatar image. DONE
 - Remind the user to confirm their email if they haven’t done so after 24 hours
-  - NOTES TO SELF: Create a delayed job on user creation that runs if email_verified is still false
+  - NOTES TO SELF: Create a service for a delayed job on user creation that runs if email_verified is still false
 - Complete without using any authentication gems and without using Rails model callbacks
 - Create some Unit Tests
 
