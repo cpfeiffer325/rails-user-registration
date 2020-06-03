@@ -8,10 +8,14 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email])
 
     if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      redirect_to @user
+      if @user.email_confirmed
+        session[:user_id] = @user.id
+        redirect_to @user
+      else
+        flash[:error] = 'Please activate your account'
+      end
     else
-      redirect_to '/login'
+      redirect_to '/login', flash: "Username or Password was wrong"
     end
   end
 
