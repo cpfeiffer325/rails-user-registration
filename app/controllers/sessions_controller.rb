@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
         redirect_to @user
       else
         flash[:error] = 'Please activate your account'
+        redirect_to '/login'
       end
     else
       redirect_to '/login', flash: "Username or Password was wrong"

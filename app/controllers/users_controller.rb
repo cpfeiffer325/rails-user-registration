@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   def create
     create_user_service = CreateUser.new(user_params.merge(email_confirmed: false))
     @user = create_user_service.create_user
-    
     session[:user_id] = @user.id
 
     if @user
