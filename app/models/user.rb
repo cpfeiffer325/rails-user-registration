@@ -6,12 +6,6 @@ class User < ApplicationRecord
   include Gravtastic
   gravtastic :secure => false, :default => 'retro', :filetype => :gif, :size => 120
 
-  def email_activate
-    self.email_confirmed = true
-    self.confirm_token = nil
-    save!(:validate => false)
-  end
-
   private
   
   def set_confirmation_token

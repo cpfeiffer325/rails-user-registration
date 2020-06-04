@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def confirm_email
-    @user = User.find_by_confirm_token(params[:id])
+    @user = User.find_by(confirm_token: params[:id])
     if user_params
       @user.email_activate
       flash[:success] = 'Welcome to the User Registration App'
@@ -36,6 +36,12 @@ class UsersController < ApplicationController
       flash[:error] = 'Error: User does not exist'
       redirect_to '/welcome'
     end
+  end
+  
+  def email_activate
+    self.email_confirmed = true
+    self.confirm_token = nil
+    save!(:validate => false)
   end
 
   private
