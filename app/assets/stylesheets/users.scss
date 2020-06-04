@@ -1,3 +1,14 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+body section.profile {
+  .header {
+    text-align: center
+  }
+
+  .content {
+    padding: 50px;
+    text-align: center
+  }
+}

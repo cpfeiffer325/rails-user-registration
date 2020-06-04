@@ -1,12 +1,20 @@
-<h1>User Info</h1>
-<%= button_to "Logout", '/logout', method: :get%>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Gravatar Image:</strong>
-  <%= image_tag @user.gravatar_url(:rating => 'R', :secure => true) %>
-</p>
+<section class="profile">
+  <div class="header">
+    <h1>User Info</h1>
+    <%= button_to "Logout", '/logout', method: :get%>
+  </div>
+  
+  <div class="content">
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
+    
+    <div>
+      <p class="title"><strong>Gravatar Image:</strong></p>
+      <div class="image">
+        <%= image_tag @user.gravatar_url(:rating => 'R', :secure => true) %>
+      </div>
+    </div>
+  </div>
+</section>
