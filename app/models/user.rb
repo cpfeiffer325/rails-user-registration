@@ -2,9 +2,9 @@ class User < ApplicationRecord
   has_secure_password
   before_create :set_confirmation_token
 
-  # make gravatar available to Users
-  include Gravtastic
-  gravtastic :secure => false, :default => 'retro', :filetype => :gif, :size => 120
+  def gravatar_url
+    "https://secure.gravatar.com/avatar/#{self.email_hash}?s=200&r=pg&d=robohash"
+  end
 
   private
   
