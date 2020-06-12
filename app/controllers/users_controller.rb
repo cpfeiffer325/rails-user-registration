@@ -14,13 +14,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    create_user_service = CreateUser.new(user_params.merge(email_confirmed: false))
+    create_user_service = CreateUser.new(user_params.merge(email_confirmed: false)) # needs to be specified since the default is set to true for when user is created by admin and doesn't need confirmation email
     @user = create_user_service.create_user
     session[:user_id] = @user.id
-
+    
     if @user
-      UserMailer.registration_confirmation(@user).deliver
-      UsersReminderJob.set(wait: 24.hours).perform_later(@user)
+      UserMailer.registration_confirmation(@user).deliver # move to create_user?
+      UsersReminderJob.set(wait: 24.hours).perform_later(@user) # move to create_user?
       flash[:success] = "Please check your email to confirm your address to continue"
       redirect_to '/welcome'
     else
@@ -39,12 +39,6 @@ class UsersController < ApplicationController
       flash[:error] = 'Error: User does not exist'
       redirect_to '/welcome'
     end
-  end
-  
-  def email_activate
-    self.email_confirmed = true
-    self.confirm_token = nil
-    save!(:validate => false)
   end
 
   private
