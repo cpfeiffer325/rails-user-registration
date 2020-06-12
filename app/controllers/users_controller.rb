@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
-  before_action :only_see_own_page, only: [:show]
   skip_before_action :authorized, only: [:new, :create]
 
   def show
     @user = User.find(params[:id])
+
+    if current_user != @user
+      redirect_to root_path, notice: "Sorry, but you are only allowed to view your own profile page."
+    end
   end
   
   def new
@@ -28,7 +31,7 @@ class UsersController < ApplicationController
 
   def confirm_email
     @user = User.find_by(confirm_token: params[:id])
-    if user_params
+    if @user
       @user.email_activate
       flash[:success] = 'Welcome to the User Registration App'
       redirect_to @user
@@ -52,14 +55,6 @@ class UsersController < ApplicationController
       :password,
       :email_confirmed,
     )
-  end
-
-  def only_see_own_page
-    @user = User.find(params[:id])
-
-    if current_user != @user
-      redirect_to root_path, notice: "Sorry, but you are only allowed to view your own profile page."
-    end
   end
 end
 
