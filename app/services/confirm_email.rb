@@ -1,5 +1,5 @@
 class ConfirmEmail
-  def initialize token: #verify
+  def initialize token:
     @token = token
   end
   
@@ -9,5 +9,3 @@ class ConfirmEmail
     @user
   end
 end
-
-#url /confirm?token=:token
