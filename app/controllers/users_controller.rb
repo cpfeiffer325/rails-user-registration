@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
+  # before_action :load_user, only: [:show]
 
   def show
     @user = User.find(params[:id])
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
     create_user_service = CreateUser.new(user_params.merge(email_confirmed: false)) # needs to be specified since the default is set to true for when user is created by admin and doesn't need confirmation email
     @user = create_user_service.create_user
     session[:user_id] = @user.id
-    
+
     if @user
       UserMailer.registration_confirmation(@user).deliver # move to create_user?
       UsersReminderJob.set(wait: 24.hours).perform_later(@user) # move to create_user?
@@ -29,17 +30,17 @@ class UsersController < ApplicationController
     end
   end
 
-  def confirm_email
-    @user = User.find_by(confirm_token: params[:id])
-    if @user
-      @user.email_activate
-      flash[:success] = 'Welcome to the User Registration App'
-      redirect_to @user
-    else
-      flash[:error] = 'Error: User does not exist'
-      redirect_to '/welcome'
-    end
-  end
+  # def confirm_email # Remove
+  #   @user = User.find_by(confirm_token: params[:id])
+  #   if @user
+  #     @user.email_activate
+  #     flash[:success] = 'Welcome to the User Registration App'
+  #     redirect_to @user
+  #   else
+  #     flash[:error] = 'Error: User does not exist'
+  #     redirect_to '/welcome'
+  #   end
+  # end
 
   private
 
@@ -50,6 +51,8 @@ class UsersController < ApplicationController
       :email_confirmed,
     )
   end
-end
 
-# CreateUser.new(email: "c_pfeifer325@yahoo.ca", password: "abc123").create_user;
+  # def load_user
+  #   @user = User.find(params[:id])
+  # end
+end
