@@ -4,7 +4,6 @@ class CreateUser
   end
 
   def create_user
-    email_hash = Digest::MD5.hexdigest(@params[:email])
     user = User.create(@params.merge(email_hash: email_hash))
     # UserMailer.registration_confirmation(user).deliver
     # UsersReminderJob.set(wait: 24.hours).perform_later(@user)
@@ -12,7 +11,7 @@ class CreateUser
 
   private
 
-  # def email_hash
-  #   Digest::MD5.hexdigest(@params[:email])
-  # end
+  def email_hash
+    Digest::MD5.hexdigest(@params[:email])
+  end
 end
