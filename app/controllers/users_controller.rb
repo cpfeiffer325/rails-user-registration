@@ -1,12 +1,10 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
-  # before_action :load_user, only: [:show]
+  before_action :load_user, only: [:show]
 
   def show
-    @user = User.find(params[:id])
-
     if current_user != @user
-      redirect_to root_path, notice: "Sorry, but you are only allowed to view your own profile page."
+      redirect_to root_path, notice: "Sorry, but you are ONLY allowed to view your own profile page."
     end
   end
   
@@ -30,18 +28,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # def confirm_email # Remove
-  #   @user = User.find_by(confirm_token: params[:id])
-  #   if @user
-  #     @user.email_activate
-  #     flash[:success] = 'Welcome to the User Registration App'
-  #     redirect_to @user
-  #   else
-  #     flash[:error] = 'Error: User does not exist'
-  #     redirect_to '/welcome'
-  #   end
-  # end
-
   private
 
   def user_params
@@ -52,7 +38,7 @@ class UsersController < ApplicationController
     )
   end
 
-  # def load_user
-  #   @user = User.find(params[:id])
-  # end
+  def load_user
+    @user = User.find(params[:id])
+  end
 end
