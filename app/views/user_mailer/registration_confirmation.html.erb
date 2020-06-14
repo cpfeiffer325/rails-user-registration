@@ -2,5 +2,4 @@ Hi Valued Customer
 
 Thanks for signing up? To confirm your registration click the URL below
 
-<%#= confirm_email_user_url(@user.confirm_token) %>
 <%= "http://localhost:3000/confirm?token=#{@user.confirm_token}" %>

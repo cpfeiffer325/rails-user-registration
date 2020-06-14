@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       redirect_to '/welcome'
     rescue
       flash[:error] = "Aaaaah, something is missing. Sending you back to register properly"
-      redirect_to '/new'
+      redirect_to '/login'
     end
   end
 

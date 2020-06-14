@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
   before_create :set_confirmation_token
+  validates :email, presence: true
+  validates :password, presence: true
 
   def gravatar_url
     "https://secure.gravatar.com/avatar/#{self.email_hash}?s=200&r=pg&d=robohash"
