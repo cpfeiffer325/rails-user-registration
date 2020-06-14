@@ -1,12 +1,15 @@
 class CreateUser
-  def initialize params # if working update for @email
+  def initialize params
     @params = params
   end
 
   def create_user
-    user = User.create(@params.merge(email_hash: email_hash))
-    # UserMailer.registration_confirmation(user).deliver
-    # UsersReminderJob.set(wait: 24.hours).perform_later(@user)
+    user = User.create!(@params.merge(email_hash: email_hash))
+    if !user.email_confirmed
+      UserMailer.registration_confirmation(user).deliver
+      UsersReminderJob.set(wait: 24.hours).perform_later(user)
+    end
+    user
   end
 
   private
