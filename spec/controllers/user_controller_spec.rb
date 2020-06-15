@@ -2,10 +2,6 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   describe "POST #create" do
-    # create double create user service
-      # tell it CreateUser.new to return that double
-    # mock line 17 .create_user function
-
     let(:user) { User.new(id: 1)}
     let(:user_params) {{ :user => { email: "email@test.com", password: "abc123" } }}
     let(:create_user_service) { double("create_user_service") }
@@ -53,11 +49,6 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "GET #show" do
-    # verify that load user is called
-      # mock out the load user dependencies
-    # test success success and failure case
-    # assert returning correct data
-
     let(:user) { User.new(id: 1) }
 
     before(:each) do
