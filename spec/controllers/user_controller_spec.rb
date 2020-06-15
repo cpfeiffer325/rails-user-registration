@@ -15,7 +15,7 @@ RSpec.describe UsersController, type: :controller do
         expect(create_user_service).to receive(:create_user).and_return(user)
       end
   
-      it "redirect to welcome" do
+      it "should redirect to welcome" do
         post :create, params: user_params
         expect(response).to redirect_to("/welcome")
       end
@@ -25,7 +25,7 @@ RSpec.describe UsersController, type: :controller do
         expect(session[:user_id]).to eq(user.id)
       end
       
-      it "flash success" do
+      it "flashes success" do
         post :create, params: user_params
         expect(flash[:success]).to eq("Please check your email to confirm your address to continue")
       end
@@ -36,12 +36,12 @@ RSpec.describe UsersController, type: :controller do
         expect(create_user_service).to receive(:create_user).and_raise(StandardError)
       end
       
-      it "flash error" do
+      it "flashes error" do
         post :create, params: user_params
         expect(flash[:error]).to eq("Aaaaah, something is missing. Sending you back to register properly")
       end
   
-      it "redirect to new" do
+      it "should redirect to new" do
         post :create, params: user_params
         expect(response).to redirect_to("/login")
       end

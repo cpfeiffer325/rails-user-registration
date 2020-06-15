@@ -2,9 +2,27 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   context 'validation tests' do
-    it 'should save successfully' do
-      user = User.new(email: 'test@email.com', password: 'testing').save
-      expect(user).to eq(true)
+    # subject { 
+    #   User.new(email: "test@email.com", password: "abc123") 
+    # }
+
+    # it { is_expected.to validate_presence_of(:password) }
+    # it { is_expected.to validate_presence_of(:email) } # why won't this work ?
+
+    subject { described_class.new(email: "test@email.com", password: "abc123") }
+
+    it "is valid with valid attributes" do
+      expect(subject).to be_valid
+    end
+
+    it "is not valid with missing email" do
+      subject.email = nil
+      expect(subject).to_not be_valid
+    end
+    
+    it "is not valid with missing password" do
+      subject.password = nil
+      expect(subject).to_not be_valid
     end
   end
 
